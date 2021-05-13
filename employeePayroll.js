@@ -87,11 +87,5 @@ employeePayrollData.name = "mememe"; //modifying name
 console.log(employeePayrollData);
 
 //new employee
-let employeePayrollData1 = new EmployeePayrollData(
-  2,
-  "Terisa",
-  3000000,
-  "F",
-  new Date()
-);
+let employeePayrollData1 = new EmployeePayrollData(2, "Terisa", 3000000, "F", new Date());
 console.log(employeePayrollData1);
