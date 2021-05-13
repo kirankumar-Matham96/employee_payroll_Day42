@@ -5,6 +5,8 @@ class EmployeePayrollData {
   salary;
   gender;
   startDate;
+  pinCode;
+  email;
 
   //constructor
   constructor(...params) {
@@ -26,7 +28,7 @@ class EmployeePayrollData {
   }
 
   get name() {
-    return this._name; //'-' used before variable 'name': must syntax
+    return this._name; //'-' used before variable 'name': must (syntax)
   }
 
   get salary() {
@@ -37,13 +39,26 @@ class EmployeePayrollData {
     return this._gender;
   }
 
+  get pinCode() {
+    return this._pinCode;
+  }
+
+  get email() {
+    return this._email;
+  }
+
   //setters
   set id(id) {
-    this._id = id;
+    let idRegex = RegExp("^[1-9]{1}[0-9]{2,}$");
+    if (idRegex.test(id)) {
+      this._id = id;
+    } else {
+      throw "INCORRECT ID!";
+    }
   }
 
   set name(name) {
-    let nameRegex = RegExp("^[A-Z]{1}[a-z]{2,}$");//not working
+    let nameRegex = RegExp("^[A-Z]{1}[a-z]{2,}$"); //not working
     if (nameRegex.test(name)) {
       this._name = name;
     } else {
@@ -52,11 +67,43 @@ class EmployeePayrollData {
   }
 
   set salary(salary) {
-    this._salary = salary;
+    let salaryRegex = RegExp("^[1-9]{1}[0-9]{2,}$");
+    if (salaryRegex.test(salary)) {
+      this._salary = salary;
+    } else {
+      throw "INCORRECT SALARY!";
+    }
   }
 
   set gender(gender) {
-    this._gender = gender;
+    let genderRegex = RegExp("(M|F)");
+    if (genderRegex.test(gender)) {
+      this._gender = gender;
+    } else {
+      throw "INCORRECT GENDER!";
+    }
+  }
+
+  set startDate(startDate) {
+    this._startDate = startDate;
+  }
+
+  set pinCode(pinCode) {
+    let pinRegex = RegExp("^[1-9]{1}[0-9]{2,6}$");
+    if (pinRegex.test(pinCode)) {
+      this._pinCode = pinCode;
+    } else {
+      throw "INVALID PINCODE!";
+    }
+  }
+
+  set email(email) {
+    let emailRegex = RegExp("^(?!\\.)[A-Za-z0-9]+([._%+-]?[0-9])*@[A-Za-z0-9-]+\\.[a-zA-Z]{2,}(\\.[A-Za-z]{2,})?$");
+    if (emailRegex.test(email)) {
+      this._email = email;
+    } else {
+      throw "Invalid email!";
+    }
   }
 
   //toString
